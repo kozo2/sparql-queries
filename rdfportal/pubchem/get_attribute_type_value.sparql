@@ -1,0 +1,22 @@
+# @endpoint https://rdfportal.org/pubchem/sparql
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX concept: <http://rdf.ncbi.nlm.nih.gov/pubchem/concept/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX compound: <http://rdf.ncbi.nlm.nih.gov/pubchem/compound/>
+PREFIX descriptor: <http://rdf.ncbi.nlm.nih.gov/pubchem/descriptor/>
+PREFIX sio: <http://semanticscience.org/resource/>
+
+SELECT DISTINCT *
+#FROM <http://rdf.ncbi.nlm.nih.gov/pubchem/descriptor>
+WHERE {
+  VALUES ?s {compound:CID3835861}
+  ?s sio:SIO_000008 ?d . 
+  OPTIONAL {
+    ?d a ?type ;
+       sio:SIO_000300 ?value
+  }
+  #[
+  #  a ?type #; #sio:CHEMINF_000140 ;
+  #  #sio:SIO_000300 ?value 
+  #]
+}
